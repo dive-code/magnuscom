@@ -644,297 +644,232 @@ Already have an account?
 
 const data = {
 
-Nigeria: {
-bonus: "₦27,500 bonus credit",
-plans: {
-Lite:"₦11,500",
-Pro:"₦17,500",
-Business:"₦28,500"
-}
-},
+  Nigeria: {
+    bonus: "₦27,500 bonus credit",
+    plans: {
+      Lite:"₦11,500",
+      Pro:"₦17,500",
+      Business:"₦28,500"
+    }
+  },
 
-Ghana: {
-bonus: "₵275 bonus credit",
-plans: {
-Lite:"₵185",
-Pro:"₵295",
-Business:"₵400"
-}
-},
+  Ghana: {
+    bonus: "₵275 bonus credit",
+    plans: {
+      Lite:"₵185",
+      Pro:"₵295",
+      Business:"₵400"
+    }
+  },
 
-Kenya: {
-bonus: "KES 2,750 bonus credit",
-plans: {
-Lite:"KES 1,800",
-Pro:"KES 2,600",
-Business:"KES 3,800"
-}
-},
+  Kenya: {
+    bonus: "KES 2,750 bonus credit",
+    plans: {
+      Lite:"KES 1,800",
+      Pro:"KES 2,600",
+      Business:"KES 3,800"
+    }
+  },
 
-Cameroon: {
-bonus: "XAF 27,500 bonus credit",
-plans: {
-Lite:"XAF 8,500",
-Pro:"XAF 13,500",
-Business:"XAF 22,500"
-}
-},
+  Cameroon: {
+    bonus: "XAF 27,500 bonus credit",
+    plans: {
+      Lite:"XAF 8,500",
+      Pro:"XAF 13,500",
+      Business:"XAF 22,500"
+    }
+  },
 
-"South Africa": {
-bonus: "ZAR 275 bonus credit",
-plans: {
-Lite:"ZAR 280",
-Pro:"ZAR 400",
-Business:"ZAR 520"
-}
-},
+  "South Africa": {
+    bonus: "ZAR 275 bonus credit",
+    plans: {
+      Lite:"ZAR 280",
+      Pro:"ZAR 400",
+      Business:"ZAR 520"
+    }
+  },
 
-Other: {
-bonus: "International bonus access",
-plans: {
-Lite:"$15",
-Pro:"$25",
-Business:"$40"
-}
-}
+  Other: {
+    bonus: "International bonus access",
+    plans: {
+      Lite:"$15",
+      Pro:"$25",
+      Business:"$40"
+    }
+  }
 
 };
-
-/* ======================================= */
-/* PAYMENT LINKS */
-/* ======================================= */
 
 const paymentLinks = {
 
-Kenya: {
-Lite: "https://selar.co/kenya-all-plans",
-Pro: "https://selar.co/kenya-all-plans",
-Business: "https://selar.co/kenya-all-plans"
-},
+  Kenya: {
+    Lite: "https://selar.co/kenya-all-plans",
+    Pro: "https://selar.co/kenya-all-plans",
+    Business: "https://selar.co/kenya-all-plans"
+  },
 
-Cameroon: {
-Lite: "https://selar.co/cameroon-all-plans",
-Pro: "https://selar.co/cameroon-all-plans",
-Business: "https://selar.co/cameroon-all-plans"
-},
+  Cameroon: {
+    Lite: "https://selar.co/cameroon-all-plans",
+    Pro: "https://selar.co/cameroon-all-plans",
+    Business: "https://selar.co/cameroon-all-plans"
+  },
 
-"South Africa": {
-Lite: "https://selar.co/sa-all-plans",
-Pro: "https://selar.co/sa-all-plans",
-Business: "https://selar.co/sa-all-plans"
-},
+  "South Africa": {
+    Lite: "https://selar.co/sa-all-plans",
+    Pro: "https://selar.co/sa-all-plans",
+    Business: "https://selar.co/sa-all-plans"
+  },
 
-Other: {
-Lite: "https://selar.co/international-all-plans",
-Pro: "https://selar.co/international-all-plans",
-Business: "https://selar.co/international-all-plans"
-}
+  Other: {
+    Lite: "https://selar.co/international-all-plans",
+    Pro: "https://selar.co/international-all-plans",
+    Business: "https://selar.co/international-all-plans"
+  }
 
 };
-  
-/* ======================================= */
-/* ELEMENTS */
-/* ======================================= */
 
-const country =
-document.getElementById("country");
+const country = document.getElementById("country");
+const plan = document.getElementById("plan");
+const planInfo = document.getElementById("planInfo");
+const promoBox = document.getElementById("promoBox");
 
-const plan =
-document.getElementById("plan");
+country.addEventListener("change", function() {
 
-const planInfo =
-document.getElementById("planInfo");
+  const selectedCountry = country.value;
 
-const promoBox =
-document.getElementById("promoBox");
+  if(selectedCountry === "Request MoMo"){
+    window.location.href = "https://t.me/magnusstaff";
+    return;
+  }
 
-/* ======================================= */
-/* LOAD COUNTRY PLANS */
-/* ======================================= */
+  plan.innerHTML =
+  '<option value="">Choose your Magnus Plan</option>';
 
-country.addEventListener("change", () => {
+  if(data[selectedCountry]){
 
-const selectedCountry =
-country.value;
+    promoBox.innerHTML =
+    '🎉 Activate your account today and unlock <strong>' +
+    data[selectedCountry].bonus +
+    '</strong> after successful participation.';
 
-/* REQUEST MOMO */
+    Object.keys(data[selectedCountry].plans).forEach(function(planName){
 
-if(selectedCountry === "Request MoMo"){
+      const option = document.createElement("option");
 
-window.location.href =
-"https://t.me/magnusstaff";
+      option.value = planName;
 
-return;
+      option.textContent =
+      'Magnus ' + planName + ' — ' +
+      data[selectedCountry].plans[planName];
 
-}
+      plan.appendChild(option);
 
-plan.innerHTML =
-`<option value="">Choose your Magnus Plan</option>`;
+    });
 
-if(data[selectedCountry]){
-
-promoBox.innerHTML = `
-🎉 Activate your account today and unlock
-<strong>${data[selectedCountry].bonus}</strong>
-after successful participation.
-`;
-
-Object.keys(
-data[selectedCountry].plans
-).forEach(planName => {
-
-const option =
-document.createElement("option");
-
-option.value = planName;
-
-option.textContent =
-`Magnus ${planName} — ${data[selectedCountry].plans[planName]}`;
-
-plan.appendChild(option);
+  }
 
 });
 
-}
+plan.addEventListener("change", function(){
+
+  const selectedCountry = country.value;
+  const selectedPlan = plan.value;
+
+  if(!data[selectedCountry]) return;
+
+  planInfo.innerHTML =
+  '<strong>Magnus ' + selectedPlan + '</strong><br>' +
+  'Activation Fee: ' +
+  data[selectedCountry].plans[selectedPlan] +
+  '<br><br>🎁 Reward: ' +
+  data[selectedCountry].bonus +
+  '<br><br>• Premium digital access<br>' +
+  '• Secure member onboarding<br>' +
+  '• Participation reward system<br>' +
+  '• Fast activation process';
 
 });
 
-/* ======================================= */
-/* PLAN INFO */
-/* ======================================= */
-
-plan.addEventListener("change", () => {
-
-const selectedCountry =
-country.value;
-
-const selectedPlan =
-plan.value;
-
-if(
-!data[selectedCountry] ||
-!data[selectedCountry].plans[selectedPlan]
-) return;
-
-planInfo.innerHTML = `
-<strong>Magnus ${selectedPlan}</strong><br>
-Activation Fee:
-${data[selectedCountry].plans[selectedPlan]}<br><br>
-
-🎁 Reward:
-${data[selectedCountry].bonus}<br><br>
-
-• Premium digital access<br>
-• Secure member onboarding<br>
-• Participation reward system<br>
-• Fast activation process
-`;
-
-});
-
-/* ======================================= */
-/* FORM VALIDATION */
-/* ======================================= */
-
-document
-.getElementById("form")
+document.getElementById("form")
 .addEventListener("submit", function(e){
 
-e.preventDefault();
+  e.preventDefault();
 
-const email =
-document.getElementById("email");
+  const email =
+  document.getElementById("email");
 
-const password =
-document.getElementById("password");
+  const password =
+  document.getElementById("password");
 
-const confirm =
-document.getElementById("confirm");
+  const confirm =
+  document.getElementById("confirm");
 
-const selectedCountry =
-country.value;
+  const selectedCountry =
+  country.value;
 
-const selectedPlan =
-plan.value;
+  const selectedPlan =
+  plan.value;
 
-const emailErr =
-document.getElementById("emailErr");
+  const emailErr =
+  document.getElementById("emailErr");
 
-const passErr =
-document.getElementById("passErr");
+  const passErr =
+  document.getElementById("passErr");
 
-const successBox =
-document.getElementById("successBox");
+  const successBox =
+  document.getElementById("successBox");
 
-let valid = true;
+  let valid = true;
 
-const emailPattern =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern =
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-if(!emailPattern.test(email.value.trim())){
-
-emailErr.style.display = "block";
-valid = false;
-
-} else {
-
-emailErr.style.display = "none";
-
-}
-
-if(password.value !== confirm.value){
-
-passErr.style.display = "block";
-valid = false;
-
-} else {
-
-passErr.style.display = "none";
-
-}
-
-if(!valid) return;
-
-successBox.style.display = "block";
-
-successBox.innerHTML = `
-✅ Account created successfully.<br>
-Redirecting to secure payment...
-`;
-
-setTimeout(() => {
-
-  /* NIGERIA */
-
-  if(selectedCountry === "Nigeria"){
-
-    window.location.href =
-    `dashboard.html?plan=${selectedPlan}`;
-
+  if(!emailPattern.test(email.value.trim())){
+    emailErr.style.display = "block";
+    valid = false;
+  } else {
+    emailErr.style.display = "none";
   }
 
-  /* GHANA */
-
-  else if(selectedCountry === "Ghana"){
-
-    window.location.href =
-    `ghana.html?plan=${selectedPlan}`;
-
+  if(password.value !== confirm.value){
+    passErr.style.display = "block";
+    valid = false;
+  } else {
+    passErr.style.display = "none";
   }
 
-  /* OTHER COUNTRIES */
+  if(!valid) return;
 
-  else{
+  successBox.style.display = "block";
 
-    const link =
-    paymentLinks[selectedCountry][selectedPlan];
+  successBox.innerHTML =
+  "✅ Account created successfully.<br>Redirecting...";
 
-    window.location.href = link;
+  setTimeout(function(){
 
-  }
+    if(selectedCountry === "Nigeria"){
 
-},2000);
-  
+      window.location.href =
+      "dashboard.html?plan=" + selectedPlan;
+
+    }
+
+    else if(selectedCountry === "Ghana"){
+
+      window.location.href =
+      "ghana.html?plan=" + selectedPlan;
+
+    }
+
+    else if(paymentLinks[selectedCountry]){
+
+      window.location.href =
+      paymentLinks[selectedCountry][selectedPlan];
+
+    }
+
+  }, 2000);
+
 });
 
 </script>
