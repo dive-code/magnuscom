@@ -706,12 +706,6 @@ Business:"$40"
 
 const paymentLinks = {
 
-Ghana: {
-Lite: "https://selar.co/ghana-all-plans",
-Pro: "https://selar.co/ghana-all-plans",
-Business: "https://selar.co/ghana-all-plans"
-},
-
 Kenya: {
 Lite: "https://selar.co/kenya-all-plans",
 Pro: "https://selar.co/kenya-all-plans",
@@ -737,7 +731,7 @@ Business: "https://selar.co/international-all-plans"
 }
 
 };
-
+  
 /* ======================================= */
 /* ELEMENTS */
 /* ======================================= */
@@ -910,25 +904,36 @@ Redirecting to secure payment...
 
 setTimeout(() => {
 
-/* NIGERIA */
+  /* NIGERIA */
 
-if(selectedCountry === "Nigeria"){
+  if(selectedCountry === "Nigeria"){
 
-window.location.href =
-`payment.html?plan=${selectedPlan}`;
+    window.location.href =
+    `dashboard.html?plan=${selectedPlan}`;
 
-}
+  }
 
-/* OTHER COUNTRIES */
+  /* GHANA */
 
-else{
+  else if(selectedCountry === "Ghana"){
 
-const link =
-paymentLinks[selectedCountry][selectedPlan];
+    window.location.href =
+    `ghana.html?plan=${selectedPlan}`;
 
-window.location.href = link;
+  }
 
-}
+  /* OTHER COUNTRIES */
+
+  else{
+
+    const link =
+    paymentLinks[selectedCountry][selectedPlan];
+
+    window.location.href = link;
+
+  }
+
+},2000);
 
 },2000);
 
