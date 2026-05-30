@@ -1,160 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magnus Payment</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: #fff;
-      color: #000;
-      text-align: center;
-      padding: 20px;
-    }
 
-    .card {
-      background: #2d0052;
-      color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .card h2 {
-      font-size: 16px;
-      margin-bottom: 5px;
-      color: #ffcc00;
-    }
+<title>Magnus Payment</title>
 
-    .card h3 {
-      font-size: 18px;
-      margin: 8px 0;
-      font-weight: bold;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .account-number {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+<style>
 
-    .account-name {
-      font-size: 15px;
-      font-weight: bold;
-      color: #ffcc00;
-      margin-top: 5px;
-    }
+/* =========================== */
+/* GLOBAL */
+/* =========================== */
 
-    .note {
-      margin-top: 10px;
-      font-size: 13px;
-      font-weight: bold;
-      color: #ffcc00;
-      line-height: 1.6;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .copy-btn {
-      display: inline-block;
-      margin-left: 10px;
-      padding: 4px 10px;
-      font-size: 12px;
-      border: none;
-      border-radius: 6px;
-      background: #ff9900;
-      color: #fff;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+body{
 
-    .copy-btn:hover {
-      background: #e68900;
-    }
+  font-family:"Poppins",sans-serif;
 
-    .verify-section {
-      margin-top: 25px;
-    }
+  background:
+  linear-gradient(
+  135deg,
+  #050505,
+  #120012
+  );
 
-    .verify-btn {
-      display: block;
-      width: 100%;
-      max-width: 350px;
-      margin: auto;
-      padding: 15px;
-      border: none;
-      border-radius: 25px;
-      background: #000;
-      color: #fff;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-    }
+  min-height:100vh;
 
-    .verify-btn:hover {
-      opacity: 0.9;
-    }
+  color:#fff;
 
-    footer {
-      margin-top: 25px;
-      font-size: 13px;
-      color: #555;
-    }
-  </style>
+  padding:30px 18px;
+
+  overflow-x:hidden;
+
+}
+
+/* =========================== */
+/* WRAPPER */
+/* =========================== */
+
+.wrapper{
+
+  width:100%;
+
+  max-width:520px;
+
+  margin:auto;
+
+}
+
+/* =========================== */
+/* HEADER */
+/* =========================== */
+
+.header{
+
+  text-align:center;
+
+  margin-bottom:28px;
+
+}
+
+.header h1{
+
+  font-size:42px;
+
+  font-weight:700;
+
+  background:
+  linear-gradient(
+  to right,
+  #ff9900,
+  #ff0057
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  margin-bottom:10px;
+
+}
+
+.header p{
+
+  color:#cfcfcf;
+
+  line-height:1.8;
+
+  font-size:15px;
+
+}
+
+/* =========================== */
+/* WARNING */
+/* =========================== */
+
+.warning{
+
+  background:
+  rgba(255,0,87,0.10);
+
+  border:
+  1px solid rgba(255,0,87,0.25);
+
+  padding:18px;
+
+  border-radius:22px;
+
+  line-height:1.8;
+
+  margin-bottom:24px;
+
+  color:#fff;
+
+  font-size:14px;
+
+}
+
+/* =========================== */
+/* PAYMENT CARD */
+/* =========================== */
+
+.payment-card{
+
+  background:
+  rgba(255,255,255,0.04);
+
+  border:
+  1px solid rgba(255,255,255,0.06);
+
+  border-radius:30px;
+
+  padding:28px 24px;
+
+  margin-bottom:24px;
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,0.30);
+
+}
+
+.payment-card h2{
+
+  font-size:14px;
+
+  letter-spacing:2px;
+
+  color:#ff9900;
+
+  margin-bottom:12px;
+
+}
+
+.bank{
+
+  font-size:30px;
+
+  font-weight:700;
+
+  margin-bottom:18px;
+
+}
+
+.account-number{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
+
+  background:
+  rgba(255,255,255,0.03);
+
+  padding:18px;
+
+  border-radius:18px;
+
+  margin-bottom:18px;
+
+}
+
+.account-number span{
+
+  font-size:30px;
+
+  font-weight:700;
+
+  letter-spacing:2px;
+
+}
+
+.copy-btn{
+
+  border:none;
+
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
+  background:
+  linear-gradient(
+  to right,
+  #ff9900,
+  #ff0057
+  );
+
+  color:#fff;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+}
+
+.account-name{
+
+  font-size:20px;
+
+  font-weight:600;
+
+  color:#f8d28d;
+
+}
+
+/* =========================== */
+/* BUTTONS */
+/* =========================== */
+
+.action-btn{
+
+  width:100%;
+
+  border:none;
+
+  padding:18px;
+
+  border-radius:20px;
+
+  margin-top:18px;
+
+  background:
+  linear-gradient(
+  to right,
+  #ff5a00,
+  #12003b
+  );
+
+  color:#fff;
+
+  font-size:18px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+}
+
+.action-btn:hover{
+
+  transform:
+  translateY(-2px);
+
+}
+
+/* =========================== */
+/* FOOTER */
+/* =========================== */
+
+.footer{
+
+  text-align:center;
+
+  margin-top:30px;
+
+  color:#888;
+
+  font-size:13px;
+
+}
+
+/* =========================== */
+/* POPUP */
+/* =========================== */
+
+.popup-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,0.70);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  z-index:9999;
+
+  animation:fadeIn 0.3s ease;
+
+}
+
+.popup-box{
+
+  width:100%;
+
+  max-width:420px;
+
+  background:#fff;
+
+  border-radius:30px;
+
+  padding:30px 24px;
+
+  position:relative;
+
+  animation:popupShow 0.35s ease;
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,0.25);
+
+}
+
+.popup-close{
+
+  position:absolute;
+
+  top:18px;
+  right:18px;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  color:#111;
+
+  font-weight:700;
+
+}
+
+.popup-box h2{
+
+  font-size:32px;
+
+  margin-bottom:20px;
+
+  color:#ff2b2b;
+
+  font-weight:700;
+
+}
+
+.popup-box p{
+
+  font-size:18px;
+
+  line-height:1.8;
+
+  color:#222;
+
+}
+
+.popup-btn{
+
+  width:100%;
+
+  margin-top:28px;
+
+  border:none;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+  to right,
+  #ff5a00,
+  #12003b
+  );
+
+  color:#fff;
+
+  font-size:22px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 12px 30px rgba(255,90,0,0.25);
+
+}
+
+/* =========================== */
+/* ANIMATIONS */
+/* =========================== */
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+
+}
+
+@keyframes popupShow{
+
+  from{
+
+    transform:
+    scale(0.85);
+
+    opacity:0;
+
+  }
+
+  to{
+
+    transform:
+    scale(1);
+
+    opacity:1;
+
+  }
+
+}
+
+/* =========================== */
+/* MOBILE */
+/* =========================== */
+
+@media(max-width:600px){
+
+  .header h1{
+    font-size:34px;
+  }
+
+  .account-number span{
+    font-size:22px;
+  }
+
+  .bank{
+    font-size:25px;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <p style="font-size:18px; font-weight:600; color:#333; margin-bottom:20px;">
-    For your selected package, transfer exactly 
-    <b>₦11,000</b>, <b>₦17,500</b>, or <b>₦28,500</b> 
-    to any of the accounts below for your coupon code registration
-  </p>
+<!-- POPUP -->
 
-  <!-- First Merchant -->
-  <div class="card">
-    <h2>MERCHANT 1</h2>
-    <h3>OPAY</h3>
-    <p class="account-number">
-      <span id="acct1">9122229539</span>
-      <button class="copy-btn" onclick="copyText('9122229539')">📋</button>
+<div class="popup-overlay" id="popupOverlay">
+
+  <div class="popup-box">
+
+    <div
+    class="popup-close"
+    onclick="closePopup()">
+      ✖
+    </div>
+
+    <h2>
+      ℹ️ Payment Tip
+    </h2>
+
+    <p>
+      For fastest confirmation, avoid OPAY.
+      Use Palmpay, Moniepoint,
+      POS transfers, or normal bank transfers.
     </p>
-    <p class="account-name">Lawrencia Nwokike</p>
+
+    <button
+    class="popup-btn"
+    onclick="closePopup()">
+
+      Got it
+
+    </button>
+
   </div>
 
-  <!-- Second Merchant -->
-  <div class="card">
-    <h2>MERCHANT 2</h2>
-    <h3>ACCESS BANK</h3>
-    <p class="account-number">
-      <span id="acct2">1881386348</span>
-      <button class="copy-btn" onclick="copyText('1881386348')">📋</button>
+</div>
+
+<!-- WRAPPER -->
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <h1>
+      Magnus Payment
+    </h1>
+
+    <p>
+      Complete your activation payment below
+      to unlock all Magnus earning features.
     </p>
-    <p class="account-name">jeremiah james</p>
-    <p class="note">(NOTE: Don’t pay with Opay. Use PalmPay, FCMB, or other banks.)</p>
+
   </div>
 
-  <!-- Verify -->
-  <div class="verify-section">
-    <p>Click the button below to verify your payment</p>
-    <a href="https://wa.link/y8jd3w" target="_blank" class="verify-btn">✅ I have made the transfer</a>
+  <!-- WARNING -->
+
+  <div class="warning">
+
+    ⚠️ When making payment,
+    please add words like
+    <strong>CAPITAL</strong>,
+    <strong>Loan</strong>,
+    or <strong>Support</strong>
+    in your transfer description
+    due to Nigerian banking regulations.
+
   </div>
 
-  <footer>
-    © 2025 Magnus. All Rights Reserved.
-  </footer>
+  <!-- CARD 1 -->
 
-  <script>
-    function copyText(account) {
-      navigator.clipboard.writeText(account).then(() => {
-        alert("Account number copied: " + account);
-      });
-    }
-  </script>
+  <div class="payment-card">
+
+    <h2>
+      MERCHANT 1
+    </h2>
+
+    <div class="bank">
+      PALMPAY
+    </div>
+
+    <div class="account-number">
+
+      <span id="acct1">
+        8092860734
+      </span>
+
+      <button
+      class="copy-btn"
+      onclick="copyText('8092860734',this)">
+
+        ⧉
+
+      </button>
+
+    </div>
+
+    <div class="account-name">
+      Lucy Abanum
+    </div>
+
+    <button
+    class="action-btn">
+
+      I've Completed My Payment
+
+    </button>
+
+  </div>
+
+  <!-- CARD 2 -->
+
+  <div class="payment-card">
+
+    <h2>
+      MERCHANT 2
+    </h2>
+
+    <div class="bank">
+      FCMB BANK
+    </div>
+
+    <div class="account-number">
+
+      <span id="acct2">
+        1036388934
+      </span>
+
+      <button
+      class="copy-btn"
+      onclick="copyText('1036388934',this)">
+
+        ⧉
+
+      </button>
+
+    </div>
+
+    <div class="account-name">
+      Divine Abanum
+    </div>
+
+    <button
+    class="action-btn"
+    onclick="verifyPayment()">
+
+      I've Completed My Payment
+
+    </button>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+    © 2026 Magnus. All Rights Reserved.
+  </div>
+
+</div>
+
+<script>
+
+/* =========================== */
+/* CLOSE POPUP */
+/* =========================== */
+
+function closePopup(){
+
+document.getElementById(
+"popupOverlay"
+).style.display = "none";
+
+}
+
+/* =========================== */
+/* COPY */
+/* =========================== */
+
+function copyText(text,button){
+
+navigator.clipboard.writeText(text);
+
+button.innerHTML = "✓";
+
+setTimeout(()=>{
+
+button.innerHTML = "⧉";
+
+},2000);
+
+}
+
+/* =========================== */
+/* VERIFY */
+/* =========================== */
+
+function verifyPayment(){
+
+window.open(
+"https://t.me/Magnuspage?text=Hello+I+have+completed+my+Magnus+payment",
+"_blank"
+);
+
+}
+
+</script>
 
 </body>
 </html>
-
-
