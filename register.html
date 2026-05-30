@@ -915,29 +915,11 @@ setTimeout(() => {
 if(selectedCountry === "Nigeria"){
 
 window.location.href =
-`dashboard.html?plan=${selectedPlan}`;
-
-}
-
-/* GHANA */
-
-else if(selectedCountry === "Ghana"){
-
-window.location.href =
-`ghana.html?plan=${selectedPlan}`;
+`payment.html?plan=${selectedPlan}`;
 
 }
 
 /* OTHER COUNTRIES */
-
-else{
-
-const link =
-paymentLinks[selectedCountry][selectedPlan];
-
-window.location.href = link;
-
-}
 
 else{
 
