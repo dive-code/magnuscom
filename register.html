@@ -922,8 +922,18 @@ setTimeout(() => {
 
 if(selectedCountry === "Nigeria"){
 
+localStorage.setItem(
+"magnusPlan",
+selectedPlan
+);
+
+localStorage.setItem(
+"magnusUserName",
+document.getElementById("name").value
+);
+
 window.location.href =
-`dashboard.html?plan=${selectedPlan}`;
+dashboard.html?plan=${selectedPlan};
 
 }
   
