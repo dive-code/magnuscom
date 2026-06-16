@@ -648,16 +648,20 @@ Already have an account?
 const data = {
 
 Nigeria: {
-bonus: "₦7,500 bonus credit",
-plans: {
-Lite:"₦11,500",
-  bonus: "₦11,500 bonus credit",
-plans: {
-Pro:"₦17,500",
-  bonus: "₦27,500 bonus credit",
-plans: {
-Business:"₦28,500"
-}
+  plans: {
+    Lite: {
+      price: "₦11,500",
+      bonus: "₦7,500 Bonus Credit"
+    },
+    Pro: {
+      price: "₦17,500",
+      bonus: "₦17,500 Bonus Credit"
+    },
+    Business: {
+      price: "₦28,500",
+      bonus: "₦27,500 Bonus Credit"
+    }
+  }
 },
 
 Ghana: {
@@ -793,23 +797,20 @@ if(data[selectedCountry]){
 
 promoBox.innerHTML = `
 🎉 Activate your account today and unlock
-<strong>${data[selectedCountry].bonus}</strong>
+<strong>${selectedPlan ? data[selectedCountry].plans[selectedPlan].bonus : "exclusive rewards"}</strong>
 after successful participation.
 `;
+  
+Object.keys(data[selectedCountry].plans).forEach(planName => {
 
-Object.keys(
-data[selectedCountry].plans
-).forEach(planName => {
+  const option = document.createElement("option");
 
-const option =
-document.createElement("option");
+  option.value = planName;
 
-option.value = planName;
+  option.textContent =
+  `Magnus ${planName} — ${data[selectedCountry].plans[planName].price}`;
 
-option.textContent =
-`Magnus ${planName} — ${data[selectedCountry].plans[planName]}`;
-
-plan.appendChild(option);
+  plan.appendChild(option);
 
 });
 
@@ -821,35 +822,22 @@ plan.appendChild(option);
 /* PLAN INFO */
 /* ======================================= */
 
-plan.addEventListener("change", () => {
-
-const selectedCountry =
-country.value;
-
-const selectedPlan =
-plan.value;
-
-if(
-!data[selectedCountry] ||
-!data[selectedCountry].plans[selectedPlan]
-) return;
+const selectedData =
+data[selectedCountry].plans[selectedPlan];
 
 planInfo.innerHTML = `
 <strong>Magnus ${selectedPlan}</strong><br>
 Activation Fee:
-${data[selectedCountry].plans[selectedPlan]}<br><br>
+${selectedData.price}<br><br>
 
 🎁 Reward:
-${data[selectedCountry].bonus}<br><br>
+${selectedData.bonus}<br><br>
 
 • Premium digital access<br>
 • Secure member onboarding<br>
 • Participation reward system<br>
 • Fast activation process
 `;
-
-});
-
 /* ======================================= */
 /* FORM VALIDATION */
 /* ======================================= */
